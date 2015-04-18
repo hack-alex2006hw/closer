@@ -1,5 +1,9 @@
 
-var request = require('request');
+var request = require('request'),
+	dotenv  = require('dotenv').load();
+
+var sinchAppKey = process.env.sinchAppKey,
+	sinchSecret = process.env.sinchSecret;
 
 
 var _auth;
@@ -16,7 +20,7 @@ sinchAuth = function(appKey, secret){
 var sinchMessaging = {};
 
 sinchMessaging.sendMessage = function (phoneNumber, message) {
-	var auth = sinchAuth();
+	var auth = sinchAuth(sinchAppKey, sinchSecret);
 	if (!auth){
 		throw new Error("No Authorization was provided");
 	}
