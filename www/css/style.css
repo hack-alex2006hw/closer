@@ -1,0 +1,10 @@
+/* Empty. Add your own CSS if you like */
+
+.map-background {
+  background: url("img/iot_mockup_final.png") no-repeat
+  z-index: 100;
+}
+
+.panel {
+  z-index: 105;
+}
