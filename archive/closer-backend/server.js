@@ -4,15 +4,18 @@
  */
 var init = require('./config/init')(),
   config = require('./config/config'),
-  mongoose = require('mongoose');
+  mongoose = require('mongoose')
+  dotenv = require('dotenv').load();
 
 /**
  * Main application entry file.
  * Please note that the order of loading is important.
  */
 
+var MongoDB = process.env.MongoDB || 'mongodb://localhost:2701/closer';
+
 // Bootstrap db connection
-var db = mongoose.connect(config.db, function(err) {
+var db = mongoose.connect(MongoDB, function(err) {
   if (err) {
     console.error('\x1b[31m', 'Could not connect to MongoDB!');
     console.log(err);
