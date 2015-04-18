@@ -1,6 +1,15 @@
-<map center="37.8027394,-122.4581277" zoom="15">
+<div class="item item-input-inset">
+  <label class="item-input-wrapper map-background">
+    <input type="text" placeholder="Device ID" ng-model="device">
+  </label>
+  <button class="button button-small" ng-click="addDevice()">
+    Add New Device
+  </button>
+</div>
+
+<map center="37.8027394,-122.4581277" zoom="14">
   <marker position="37.8027394,-122.4581277" on-click="toggleBounce()" animation="DROP" draggable="true"></marker>
-  <shape name="polyline" id="foo" path="[[22.291, 153.027], [18.291, 153.027]]" icons="[
+  <shape name="polyline" id="foo" path="[[37.8027394,-122.4581277], [37.8086053,-122.4719035]]" icons="[
       {
         icon: {
           path: 'M -2,0 0,-2 2,0 0,2 z',
@@ -9,14 +18,6 @@
           fillOpacity: 1
         },
         offset: '0%'
-      },
-      {
-        icon: {
-          path: 'M -1,0 A 1,1 0 0 0 -3,0 1,1 0 0 0 -1,0M 1,0 A 1,1 0 0 0 3,0 1,1 0 0 0 1,0M -3,3 Q 0,5 3,3',
-          strokeColor: '#00F',
-          rotation: 45
-        },
-        offset: '50%'
       },
       {
         icon: {
@@ -29,3 +30,8 @@
     ]">
   </shape>  
 </map>
+
+
+<div ng-repeat="device in $root.devices">
+  {{device.id}}
+</div>
