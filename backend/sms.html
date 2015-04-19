@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Simple sms</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">  </script>
+    <script>
+      $(document).ready(function(){
+        var phoneNumber,smsMessage;
+        $("#submit").click(function(){
+          phoneNumber=$("#phone").val();
+          smsMessage=$("#message").val();
+          $.post("http://localhost:3000/sms",{phone: phoneNumber, message: smsMessage}, function(data){
+            if(data==='done')
+              {
+                alert("sms success");
+              }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>SMS Someone!</h1>
+    <input type="TEXT" id="phone" size="40"> phone<br>
+    <input type="TEXT" id="message" size="40"> Message<br>
+    <input type="button" id="submit" value="Submit">
+  </body>
+</html>
