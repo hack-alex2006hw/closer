@@ -18,7 +18,7 @@ s.sendMessage(phoneNumber, smsMessage);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/',function(req,res){
+app.get('/sms',function(req,res){
   res.sendfile("sms.html");
 });
 
