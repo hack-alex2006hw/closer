@@ -7,7 +7,7 @@
   </button>
 </div>
 
-<map center="{{markers[0][0]}}, {{markers[0][1]}}" zoom="7" ng-if="markers.length > 1">
+<map center="{{markers[0][0]}}, {{markers[0][1]}}" zoom="7" ng-if="markers.length > 1" style="height:650px;">
   <marker 
     position="{{markers[0][0]}}, {{markers[0][1]}}" 
     on-click="toggleBounce()" 
@@ -63,7 +63,7 @@
   </shape> -->  
 </map>
 
-<map center="{{markers[0][0]}}, {{markers[0][1]}}" zoom="8" ng-if="markers.length == 1">
+<map center="{{markers[0][0]}}, {{markers[0][1]}}" zoom="8" ng-if="markers.length == 1" style="height:650px;">
   <marker 
     position="{{markers[0][0]}}, {{markers[0][1]}}" 
     on-click="toggleBounce()" 

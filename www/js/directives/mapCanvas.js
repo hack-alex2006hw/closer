@@ -1,6 +1,7 @@
 app.directive('mapCanvas', [
   '$http',
-  function($http){
+  '$ionicPopup',
+  function($http, $ionicPopup){
 
     return {
       restrict: "A",
@@ -66,7 +67,15 @@ app.directive('mapCanvas', [
               $scope.markers.push(device.geo.coordinates);
             } else {
               // error message too large of distance
-              console.log('distance too large');
+               // An elaborate, custom popup
+                var myPopup = $ionicPopup.show({
+                  title: 'Oops! The distance is too large.',
+                  subTitle: 'Please use a closer device id.',
+                  scope: $scope,
+                  buttons: [
+                    {text: "OK"}
+                  ]
+                });
             }
           }
         }
@@ -112,7 +121,7 @@ app.directive('mapCanvas', [
             pushed.push(device.id);
             addToMap(device);
           } else if (device && pushed.indexOf(device.id) == -1){
-            device.distance = distanceBetween($scope.tempContainer[pushed[0]].geo.coordinates, device.geo.coordinates);
+            device.distance = parseInt(distanceBetween($scope.tempContainer[pushed[0]].geo.coordinates, device.geo.coordinates));
             $scope.$root.devices.push(device);
             pushed.push(device.id);
             addToMap(device);
