@@ -11,7 +11,8 @@ app.directive('mapCanvas', [
       controller: function($scope) {
 
         var msgs = [];
-        var tempContainer = {};
+        $scope.tempContainer = {};
+        var pushed = [];
 
         // setTimeout(function(){
           PUBNUB.init({
@@ -32,16 +33,19 @@ app.directive('mapCanvas', [
           }).subscribe({
             channel : 'closer.pointlook.com',
             message : function(msg){ 
-              tempContainer[msg.id] = msg;
+              console.log(msg.id);
+              $scope.tempContainer[msg.id] = msg;
+              console.log($scope.tempContainer);
             }
           });         
         // }, 3000000);
 
         $scope.addDevice = function() {
-          console.log(tempContainer);
-          var device = tempContainer[this.device];
-          if (device) {
+          console.log($scope.tempContainer);
+          var device = $scope.tempContainer[this.device];
+          if (device && pushed.indexOf(device.id) == -1) {
             $scope.$root.devices.push(device);
+            pushed.push(device.id);
           }
         };
 

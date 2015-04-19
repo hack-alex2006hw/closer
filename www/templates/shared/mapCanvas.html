@@ -31,7 +31,14 @@
   </shape>  
 </map>
 
+<h2>Your Devices</h2>
+<div class="list">
 
-<div ng-repeat="device in $root.devices">
-  {{device.id}}
+  <div class="item item-button-right" ng-repeat="(id, val) in tempContainer">
+    {{val.id}}
+    <button class="button button-positive">
+      <i class="icon ion-ios7-telephone"></i>
+    </button>
+  </div>
+
 </div>

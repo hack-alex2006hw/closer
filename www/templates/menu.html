@@ -18,11 +18,20 @@
     </ion-header-bar>
     <ion-content>
 
-    <ion-list>
-      <ion-item nav-clear menu-close ng-repeat="device in $root.devices">
+    <div class="list">
+
+      <div class="item item-button-right nav-clear menu-close" ng-repeat="device in $root.devices">
         {{device.id}}
-      </ion-item>
-    </ion-list>      
+        <button class="button button-positive" ng-show="$index == 0">
+          <i class="icon ion-ios7-telephone"></i>
+        </button>  
+
+        <button class="button button-default" ng-show="$index != 0">
+          <i class="icon ion-ios7-telephone"></i>
+        </button>       
+      </div>     
+
+    </div>      
     
     </ion-content>
   </ion-side-menu>

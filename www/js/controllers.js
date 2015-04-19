@@ -34,6 +34,8 @@ angular.module('starter.controllers', [])
 
   $scope.$root.devices = [];
 
+
+
 })
 
 .controller('PlaylistsCtrl', function($scope) {
