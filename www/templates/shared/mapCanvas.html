@@ -7,9 +7,41 @@
   </button>
 </div>
 
-<map center="37.8027394,-122.4581277" zoom="14">
-  <marker position="37.8027394,-122.4581277" on-click="toggleBounce()" animation="DROP" draggable="true"></marker>
-  <shape name="polyline" id="foo" path="[[37.8027394,-122.4581277], [37.8086053,-122.4719035]]" icons="[
+<map center="{{markers[0][0]}}, {{markers[0][1]}}" zoom="7" ng-if="markers.length > 1">
+  <marker 
+    position="{{markers[0][0]}}, {{markers[0][1]}}" 
+    on-click="toggleBounce()" 
+    animation="DROP" 
+    draggable="false"
+    icon="//developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+    id="{{markers[0][2]}}">
+  </marker> 
+<shape id="circle" name="circle" stroke-color='#FF0000'
+    stroke-opacity="0.8"stroke-weight="2" 
+    center="[{{markers[0][0]}}, {{markers[0][1]}}]" radius="20" editable="false" ></shape>  
+
+  <marker 
+    position="{{marker[0]}}, {{marker[1]}}" 
+    on-click="toggleBounce()" 
+    animation="DROP"
+    ng-repeat="marker in markers" 
+    draggable="false"
+    ng-if="$index != 0"
+    id="{{marker[2]}}">
+  </marker>  
+
+ <!--  <info-window id="bar" visible-on-marker="marker[2]" max-width="100" visible="{{activeMarker(marker[2])}}" max-height="50">
+    <div ng-non-bindable="">
+      <div id="siteNotice"></div>
+      <h1 id="firstHeading" class="firstHeading">Uluru</h1>
+      <div id="bodyContent">
+        <p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large 
+        sandstone rock formation in the southern part of the 
+        Northern Territory, central Australia. It lies 335&nbsp;km (208&nbsp;mi)</p>
+      </div>
+    </div>
+  </info-window>  -->
+<!--   <shape name="polyline" id="foo" path="[[37.8027394,-122.4581277], [37.8086053,-122.4719035]]" icons="[
       {
         icon: {
           path: 'M -2,0 0,-2 2,0 0,2 z',
@@ -28,10 +60,24 @@
         offset: '100%'
       }
     ]">
-  </shape>  
+  </shape> -->  
 </map>
 
-<h2>Your Devices</h2>
+<map center="{{markers[0][0]}}, {{markers[0][1]}}" zoom="8" ng-if="markers.length == 1">
+  <marker 
+    position="{{markers[0][0]}}, {{markers[0][1]}}" 
+    on-click="toggleBounce()" 
+    animation="DROP" 
+    draggable="false"
+    icon="//developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+    id="{{markers[0][2]}}">
+  </marker>
+<shape id="circle" name="circle" stroke-color='#FF0000'
+    stroke-opacity="0.8"stroke-weight="2" 
+    center="[{{markers[0][0]}}, {{markers[0][1]}}]" radius="20" editable="false" ></shape>  
+</map>
+
+<!-- <h2>Your Devices</h2>
 <div class="list">
 
   <div class="item item-button-right" ng-repeat="(id, val) in tempContainer">
@@ -41,4 +87,4 @@
     </button>
   </div>
 
-</div>
+</div> -->

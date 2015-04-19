@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http) {
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -32,9 +32,88 @@ angular.module('starter.controllers', [])
     }, 1000);
   };
 
+// sms.pointlook.com
+
+  function checkProximity() {
+    var master = $scope.$root.devices[0];
+    for(var i = 0; i < $scope.$root.devices.length; i++){
+      console.log(i);
+      if (i != 0) {
+        var slave = $scope.$root.devices[i];
+        console.log(slave);
+        console.log($scope.$root.number);
+        if (slave.distance < parseInt($scope.$root.proximityAlert) && $scope.$root.number) {
+          console.log('text logic passed');
+          $http.post("http://closer.pointlook.com/sms", {
+            phone: $scope.$root.number,
+            message: slave.id + " is within " + slave.distance + " from you :)"
+          }).success(function(){
+            console.log('message sent');
+          });
+        }
+      }  
+    }
+  }
+
   $scope.$root.devices = [];
+  $scope.$root.$watch('proximityAlert', function(){
+    var master = $scope.$root.devices[0];
+    for(var i = 0; i < $scope.$root.devices.length; i++){
+      console.log(i);
+      if (i != 0) {
+        var slave = $scope.$root.devices[i];
+        console.log(slave);
+        if (slave.distance < parseInt($scope.$root.proximityAlert)) {
+          console.log('text logic passed');
+          $http.post("http://closer.pointlook.com/sms", {
+            phone: $scope.$root.number,
+            message: slave.id + " is within " + slave.distance + " from you :)"
+          }).success(function(){
+            console.log('message sent');
+          });
+        }
+      }  
+    }    
+  });
+  $scope.$root.$watch('devices', function(){
+    var master = $scope.$root.devices[0];
+    for(var i = 0; i < $scope.$root.devices.length; i++){
+      console.log(i);
+      if (i !== 0) {
+        var slave = $scope.$root.devices[i];
+        console.log(slave);
+        if (slave.distance < parseInt($scope.$root.proximityAlert)) {
+          console.log('text logic passed');
+          $http.post("http://closer.pointlook.com/sms", {
+            phone: $scope.$root.number,
+            message: slave.id + " is within " + slave.distance + " from you :)"
+          }).success(function(){
+            console.log('message sent');
+          });
+        }
+      }  
+    }    
+  });
 
-
+  $scope.$root.$watch('number', function(){
+    var master = $scope.$root.devices[0];
+    for(var i = 0; i < $scope.$root.devices.length; i++){
+      console.log(i);
+      if (i !== 0) {
+        var slave = $scope.$root.devices[i];
+        console.log(slave);
+        if (slave.distance < parseInt($scope.$root.proximityAlert)) {
+          console.log('text logic passed');
+          $http.post("http://closer.pointlook.com/sms", {
+            phone: $scope.$root.number,
+            message: slave.id + " is within " + slave.distance + " from you :)"
+          }).success(function(){
+            console.log('message sent');
+          });
+        }
+      }  
+    }    
+  });  
 
 })
 
