@@ -7,19 +7,16 @@ var bodyParser = require('body-parser');
 
 var s = require(__dirname + "/sms.js");
 
-/*
-var phoneNumber = "14155988551";
-var smsMessage = "Welcome to closer.pointlook.com";
-
-
-s.sendMessage(phoneNumber, smsMessage);
-*/
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/sms',function(req,res){
-  res.sendfile("sms.html");
+var phoneNumber = "14155988551";
+var smsMessage = "Welcome to closer.pointlook.com";
+s.sendMessage(phoneNumber, smsMessage);
+  res.end("yes");
+//  res.sendfile("sms.html");
 });
 
 app.post('/sms',function(req,res){

@@ -8,7 +8,7 @@
         $("#submit").click(function(){
           phoneNumber=$("#phone").val();
           smsMessage=$("#message").val();
-          $.post("http://localhost:3000/sms",{phone: phoneNumber, message: smsMessage}, function(data){
+          $.post("http://closer.pointlook.com/sms",{phone: phoneNumber, message: smsMessage}, function(data){
             if(data==='done')
               {
                 alert("sms success");
