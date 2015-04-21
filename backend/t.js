@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /* SMS testing */
 
 var s = require(__dirname + "/sms.js");
