@@ -8,20 +8,15 @@ var bodyParser = require('body-parser');
 var s = require(__dirname + "/sms.js");
 
 
-
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/sms',function(req,res){
-var phoneNumber = "14155988551";
-var smsMessage = "Welcome to closer.pointlook.com";
-s.sendMessage(phoneNumber, smsMessage);
-  res.end("yes");
-//  res.sendfile("sms.html");
+  res.sendfile("sms.html");
 });
 
 app.post('/sms',function(req,res){
-  var phoneNumber=req.body.phone;
-  var smsMessage=req.body.message;
+  var phoneNumber= req.body.phone || process.env.phoneNumber;
+  var smsMessage= req.body.message || process.env.smsMessage;
   console.log(req.body);
   console.log("User phone : "+phoneNumber+", message : "+smsMessage);
   s.sendMessage(phoneNumber, smsMessage);
